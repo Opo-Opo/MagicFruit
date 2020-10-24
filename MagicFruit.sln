@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.App", "MagicFruit.App\MagicFruit.App.csproj", "{3DF0E1AA-884E-4E43-BDCD-8DE085430383}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1274F455-DE57-40DD-B442-306E1D57421A}
+	EndGlobalSection
+EndGlobal
