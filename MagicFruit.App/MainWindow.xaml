@@ -1,0 +1,51 @@
+﻿<Window x:Class="MagicFruit.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MagicFruit.App"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance local:GameViewModel}"
+        Title="Magic Fruit" Height="450" Width="800">
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label>Healer</Label>
+            <ComboBox Name="GameInstances"
+                      Width="200"
+                      ItemsSource="{Binding Instances}" 
+                      DisplayMemberPath="MainWindowTitle" 
+                      SelectionChanged="GameInstances_SelectionChanged"/>
+        </StackPanel>
+
+        <Grid IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Column1"/>
+                <ColumnDefinition SharedSizeGroup="Column2"/>
+                <ColumnDefinition SharedSizeGroup="Column3"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0">ID</Label>
+            <Label Grid.Row="0" Grid.Column="1">Name</Label>
+            <Label Grid.Row="0" Grid.Column="2">HP%</Label>
+        </Grid>
+        
+        <ItemsControl ItemsSource="{Binding PartyMembers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid IsSharedSizeScope="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Column1"/>
+                            <ColumnDefinition SharedSizeGroup="Column2"/>
+                            <ColumnDefinition SharedSizeGroup="Column3"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <CheckBox Grid.Column="0" IsChecked="{Binding Path=Active, Mode=TwoWay}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=Name}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Path=HPP}"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</Window>

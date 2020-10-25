@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.App", "MagicFruit.App\MagicFruit.App.csproj", "{3DF0E1AA-884E-4E43-BDCD-8DE085430383}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EliteAPI", "EliteAPI", "{C8B7B047-A08F-44E9-8FA7-3F0E059B819A}"
+	ProjectSection(SolutionItems) = preProject
+		EliteAPI\EliteAPI.dll = EliteAPI\EliteAPI.dll
+		EliteAPI\EliteMMO.API.dll = EliteAPI\EliteMMO.API.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.App", "MagicFruit.App\MagicFruit.App.csproj", "{DCA66078-057F-43B0-948C-E7987CC178EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.Xi", "MagicFruit.Xi\MagicFruit.Xi.csproj", "{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DF0E1AA-884E-4E43-BDCD-8DE085430383}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA66078-057F-43B0-948C-E7987CC178EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA66078-057F-43B0-948C-E7987CC178EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA66078-057F-43B0-948C-E7987CC178EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA66078-057F-43B0-948C-E7987CC178EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
