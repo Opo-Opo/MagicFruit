@@ -1,23 +1,27 @@
 ﻿using EliteMMO.API;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows;
 using MagicFruit.Xi;
+using MagicFruit.Xi.Annotations;
 
 namespace MagicFruit.App
 {
-    public class GameViewModel
+    public class GameViewModel : INotifyPropertyChanged
     {
-        private EliteAPI _eliteApi;
-        private readonly Timer _instanceRefreshTimer = new Timer { Interval = 5000 };
-        private readonly Timer _partyRefreshTimer = new Timer { Interval = 5000 };
+        private readonly Timer _instanceRefreshTimer = new Timer { Interval = 1000 };
+        private readonly Timer _partyRefreshTimer = new Timer { Interval = 1000 };
+
+        public ObservableCollection<Process> Instances { get; set; }
+
+        public Party Party { get; private set; }
 
         public GameViewModel()
         {
             Instances = new ObservableCollection<Process>();
-            PartyMembers = new ObservableCollection<PartyMember>();
 
             UpdateInstanceList();
             _instanceRefreshTimer.Elapsed += (sender, args) => UpdateInstanceList();
@@ -41,29 +45,25 @@ namespace MagicFruit.App
         {
             _instanceRefreshTimer.Stop();
             
-            _eliteApi = new EliteAPI(process.Id);
+            Party = new Party(new EliteAPI(process.Id));
+            OnPropertyChanged(nameof(Party));
 
-            UpdatePartyMemberList();
-            _partyRefreshTimer.Elapsed += (sender, args) => UpdatePartyMemberList();
+            Party.UpdatePartyMemberList();
+            _partyRefreshTimer.Elapsed += (sender, args) =>
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    Party.UpdatePartyMemberList();
+                });
+
             _partyRefreshTimer.Start();
         }
 
-        public void UpdatePartyMemberList()
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Application.Current.Dispatcher.Invoke(delegate
-            {
-                var members = _eliteApi.Party.GetPartyMembers().Where(m => m.Active == 1).ToList();
-                PartyMembers.Clear();
-
-                foreach (var member in members)
-                {
-                    PartyMembers.Add(new PartyMember(member));
-                }
-            });
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public ObservableCollection<Process> Instances { get; set; }
-
-        public ObservableCollection<PartyMember> PartyMembers { get; set; }
     }
 }

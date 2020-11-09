@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagicFruit.Xi
+﻿namespace MagicFruit.Xi.Res
 {
     public enum Job
     {// Only know WHM, RDM and SCH are correct

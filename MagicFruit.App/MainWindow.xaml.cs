@@ -9,21 +9,20 @@ namespace MagicFruit.App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly GameViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new GameViewModel();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MessageBox.Show(((Process) ((ComboBox) sender).SelectedItem).MainWindowTitle);
+            DataContext = _viewModel = new GameViewModel();
         }
 
         private void GameInstances_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var gameInstances = sender as ComboBox;
-            (DataContext as GameViewModel).SelectInstance((gameInstances.SelectedItem as Process));
+            if (!(sender is ComboBox gameInstances)) return;
+
+            _viewModel.SelectInstance(gameInstances.SelectedItem as Process);
+
             gameInstances.IsEnabled = false;
         }
     }

@@ -18,31 +18,30 @@
                       SelectionChanged="GameInstances_SelectionChanged"/>
         </StackPanel>
 
-        <Grid IsSharedSizeScope="True">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition SharedSizeGroup="Column1"/>
-                <ColumnDefinition SharedSizeGroup="Column2"/>
-                <ColumnDefinition SharedSizeGroup="Column3"/>
+                <ColumnDefinition Width="22"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0">ID</Label>
-            <Label Grid.Row="0" Grid.Column="1">Name</Label>
-            <Label Grid.Row="0" Grid.Column="2">HP%</Label>
+            <TextBlock Grid.Row="0" Grid.Column="1">Name</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2">HP%</TextBlock>
         </Grid>
-        
-        <ItemsControl ItemsSource="{Binding PartyMembers}">
+
+        <ItemsControl ItemsSource="{Binding Party.Members}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid IsSharedSizeScope="True">
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition SharedSizeGroup="Column1"/>
-                            <ColumnDefinition SharedSizeGroup="Column2"/>
-                            <ColumnDefinition SharedSizeGroup="Column3"/>
+                            <ColumnDefinition Width="22"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
                         
                         <CheckBox Grid.Column="0" IsChecked="{Binding Path=Active, Mode=TwoWay}"/>
                         <TextBlock Grid.Column="1" Text="{Binding Path=Name}"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Path=HPP}"/>
+                        <ProgressBar Grid.Column="2" Value="{Binding Path=HPPercent, Mode=OneWay}" Maximum="100"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
