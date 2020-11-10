@@ -13,7 +13,7 @@
             <Label>Healer</Label>
             <ComboBox Name="GameInstances"
                       Width="200"
-                      ItemsSource="{Binding Instances}" 
+                      ItemsSource="{Binding PlayerSelection.Processes}"
                       DisplayMemberPath="MainWindowTitle" 
                       SelectionChanged="GameInstances_SelectionChanged"/>
         </StackPanel>

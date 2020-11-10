@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Party.cs" />
+    <Compile Include="PlayerSelection.cs" />
     <Compile Include="Res\Job.cs" />
     <Compile Include="PartyMember.cs" />
     <Compile Include="Properties\Annotations.cs" />

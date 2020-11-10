@@ -1,5 +1,4 @@
 ﻿using EliteMMO.API;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -15,14 +14,13 @@ namespace MagicFruit.App
         private readonly Timer _instanceRefreshTimer = new Timer { Interval = 1000 };
         private readonly Timer _partyRefreshTimer = new Timer { Interval = 1000 };
 
-        public ObservableCollection<Process> Instances { get; set; }
+        public PlayerSelection PlayerSelection { get; }
+            = new PlayerSelection();
 
         public Party Party { get; private set; }
 
         public GameViewModel()
         {
-            Instances = new ObservableCollection<Process>();
-
             UpdateInstanceList();
             _instanceRefreshTimer.Elapsed += (sender, args) => UpdateInstanceList();
             _instanceRefreshTimer.Start();
@@ -32,12 +30,7 @@ namespace MagicFruit.App
         {
             Application.Current.Dispatcher.Invoke(delegate
             {
-                Instances.Clear();
-
-                foreach (var process in Process.GetProcessesByName("pol"))
-                {
-                    Instances.Add(process);
-                }
+                PlayerSelection.UpdateProcessList();
             });
         }
 
@@ -48,11 +41,10 @@ namespace MagicFruit.App
             Party = new Party(new EliteAPI(process.Id));
             OnPropertyChanged(nameof(Party));
 
-            Party.UpdatePartyMemberList();
             _partyRefreshTimer.Elapsed += (sender, args) =>
                 Application.Current.Dispatcher.Invoke(delegate
                 {
-                    Party.UpdatePartyMemberList();
+                    Party.Update();
                 });
 
             _partyRefreshTimer.Start();

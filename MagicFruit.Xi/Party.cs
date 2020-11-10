@@ -15,56 +15,44 @@ namespace MagicFruit.Xi
         public Party(EliteAPI eliteApi)
         {
             _eliteApi = eliteApi;
+            Update();
         }
 
-        public void UpdatePartyMemberList()
+        public void Update()
         {
             var latestPartyMembers = 
                 _eliteApi.Party.GetPartyMembers()
                     .Where(m => m.Active == 1)
                     .ToList();
 
-            RemoveMissingPartyMembers(latestPartyMembers);
-            AddNewPartyMembers(latestPartyMembers);
-            UpdatePartyMembers(latestPartyMembers);
+            RemoveMissingMembers(latestPartyMembers);
+            UpdateActiveMembers(latestPartyMembers);
         }
 
-        private void UpdatePartyMembers(List<EliteAPI.PartyMember> latestPartyMembers)
+        private void UpdateActiveMembers(List<EliteAPI.PartyMember> latestPartyMembers)
         {
-            foreach (var latestMember in latestPartyMembers)
+            foreach (var latestPartyMember in latestPartyMembers)
             {
-                Members
-                    .First(member => member.Equals(latestMember))
-                    .Update(latestMember);
+                var existing = Members.FirstOrDefault(member => member.Equals(latestPartyMember));
+
+                if (existing == null)
+                {
+                    Members.Add(new PartyMember(latestPartyMember));
+                    continue;
+                }
+
+                existing.Update(latestPartyMember);
             }
         }
 
-        private void AddNewPartyMembers(List<EliteAPI.PartyMember> latestPartyMembers)
+        private void RemoveMissingMembers(List<EliteAPI.PartyMember> latestPartyMembers)
         {
-            var existingPartyMembers = Members.ToList();
-            var newPartyMembers = latestPartyMembers
-                .Where(newMember =>
-                    !existingPartyMembers.Exists(
-                        existingMember => existingMember.Equals(newMember)
-                    )
-                );
-
-            foreach (var member in newPartyMembers)
+            foreach (var member in Members)
             {
-                var partyMember = new PartyMember(member);
-                Members.Add(partyMember);
-            }
-        }
-
-        private void RemoveMissingPartyMembers(List<EliteAPI.PartyMember> latestPartyMembers)
-        {
-            var missingMembers = Members
-                .Where(existingMember =>
-                    !latestPartyMembers.Exists(existingMember.Equals));
-
-            foreach (var missingMember in missingMembers)
-            {
-                Members.Remove(missingMember);
+                if (!latestPartyMembers.Exists(partyMember => member.Equals(partyMember)))
+                {
+                    Members.Remove(member);
+                }
             }
         }
     }
