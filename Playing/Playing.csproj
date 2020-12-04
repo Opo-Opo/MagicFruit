@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MagicFruit.Xi</RootNamespace>
-    <AssemblyName>MagicFruit.Xi</AssemblyName>
+    <ProjectGuid>{A562CA6B-B9F7-424A-B034-7437CDEDB595}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Playing</RootNamespace>
+    <AssemblyName>Playing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EliteMMO.API">
-      <HintPath>..\EliteAPI\EliteMMO.API.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,21 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packet\CharacterBuff.cs" />
-    <Compile Include="Packet\CharacterHealth.cs" />
-    <Compile Include="Packet\PartyMemberBuff.cs" />
-    <Compile Include="Packet\PartyMemberUpdate.cs" />
-    <Compile Include="Party.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerSelection.cs" />
-    <Compile Include="Res\Job.cs" />
-    <Compile Include="PartyMember.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Res\PackageType.cs" />
-    <Compile Include="Res\StatusEffect.cs" />
-    <Compile Include="Res\Zone.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MagicFruit.Xi\MagicFruit.Xi.csproj">
+      <Project>{8a2c394c-8b00-4ac2-9f78-d28247b9f4fe}</Project>
+      <Name>MagicFruit.Xi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

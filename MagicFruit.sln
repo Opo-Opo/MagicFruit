@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.App", "MagicFrui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicFruit.Xi", "MagicFruit.Xi\MagicFruit.Xi.csproj", "{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playing", "Playing\Playing.csproj", "{A562CA6B-B9F7-424A-B034-7437CDEDB595}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A2C394C-8B00-4AC2-9F78-D28247B9F4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A562CA6B-B9F7-424A-B034-7437CDEDB595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A562CA6B-B9F7-424A-B034-7437CDEDB595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A562CA6B-B9F7-424A-B034-7437CDEDB595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A562CA6B-B9F7-424A-B034-7437CDEDB595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

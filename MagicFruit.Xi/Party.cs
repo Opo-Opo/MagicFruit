@@ -20,36 +20,36 @@ namespace MagicFruit.Xi
 
         public void Update()
         {
-            var latestPartyMembers = 
+            var updatedMembers = 
                 _eliteApi.Party.GetPartyMembers()
                     .Where(m => m.Active == 1)
                     .ToList();
 
-            RemoveMissingMembers(latestPartyMembers);
-            UpdateActiveMembers(latestPartyMembers);
+            RemoveMissingMembers(updatedMembers);
+            UpdateActiveMembers(updatedMembers);
         }
 
-        private void UpdateActiveMembers(List<EliteAPI.PartyMember> latestPartyMembers)
+        private void UpdateActiveMembers(List<EliteAPI.PartyMember> updatedMembers)
         {
-            foreach (var latestPartyMember in latestPartyMembers)
+            foreach (var updateMember in updatedMembers)
             {
-                var existing = Members.FirstOrDefault(member => member.Equals(latestPartyMember));
+                var existingMember = Members.FirstOrDefault(member => member.Equals(updateMember));
 
-                if (existing == null)
+                if (existingMember == null)
                 {
-                    Members.Add(new PartyMember(latestPartyMember));
+                    Members.Add(new PartyMember(updateMember));
                     continue;
                 }
 
-                existing.Update(latestPartyMember);
+                existingMember.Update(updateMember);
             }
         }
 
-        private void RemoveMissingMembers(List<EliteAPI.PartyMember> latestPartyMembers)
+        private void RemoveMissingMembers(List<EliteAPI.PartyMember> updatedMembers)
         {
             foreach (var member in Members)
             {
-                if (!latestPartyMembers.Exists(partyMember => member.Equals(partyMember)))
+                if (!updatedMembers.Exists(partyMember => member.Equals(partyMember)))
                 {
                     Members.Remove(member);
                 }

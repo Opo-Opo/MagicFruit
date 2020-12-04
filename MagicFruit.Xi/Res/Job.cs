@@ -1,7 +1,8 @@
 ﻿namespace MagicFruit.Xi.Res
 {
-    public enum Job
-    {// Only know WHM, RDM and SCH are correct
+    public enum Job : byte
+    {
+        Anon = 0,
         WAR = 1,
         MNK = 2,
         WHM = 3,
