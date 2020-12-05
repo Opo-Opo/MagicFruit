@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listener.cs" />
     <Compile Include="Packet\CharacterBuff.cs" />
     <Compile Include="Packet\CharacterHealth.cs" />
     <Compile Include="Packet\PartyMemberBuff.cs" />
@@ -55,7 +56,6 @@
     <Compile Include="PartyMember.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Res\PackageType.cs" />
     <Compile Include="Res\StatusEffect.cs" />
     <Compile Include="Res\Zone.cs" />
   </ItemGroup>

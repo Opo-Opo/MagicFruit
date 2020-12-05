@@ -32,7 +32,7 @@ namespace MagicFruit.Xi.Packet
 
         private readonly byte _unknown4;
 
-        public readonly ushort Zone;
+        public readonly Zone Zone;
 
         public readonly Job MainJob;
 

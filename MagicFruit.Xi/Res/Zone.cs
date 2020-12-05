@@ -1,6 +1,6 @@
 ﻿namespace MagicFruit.Xi.Res
 {
-    public enum Zone
+    public enum Zone : ushort
     {
         unknown = 0,
         PhanauetChannel = 1,

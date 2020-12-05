@@ -9,38 +9,74 @@ namespace MagicFruit.Xi
 {
     public class PartyMember : INotifyPropertyChanged
     {
-        public PartyMember(EliteAPI.PartyMember member)
+        public PartyMember(uint id)
         {
-            Index = member.Index;
-            Name = member.Name;
-
-            Update(member);
+            Id = id;
         }
 
-        public void Update(EliteAPI.PartyMember member)
+        public PartyMember(uint id, string name) : this(id)
         {
-            MemberNumber = member.MemberNumber;
-            Id = member.ID;
-            TargetIndex = member.TargetIndex;
-
-            MainJob = (Job)Enum.Parse(typeof(Job), member.MainJob.ToString());
-            MainJobLevel = member.MainJobLvl;
-
-            SubJob = (Job)Enum.Parse(typeof(Job), member.SubJob.ToString());
-            SubJobLevel = member.SubJobLvl;
-
-            HP = member.CurrentHP;
-            HPPercent = member.CurrentHPP;
-
-            MP = member.CurrentMP;
-            MPPercent = member.CurrentMPP;
-
-            Zone = (Zone)Enum.Parse(typeof(Zone), member.Zone.ToString());
+            Name = name;
         }
 
-        public bool Equals(EliteAPI.PartyMember member)
+        public PartyMember(EliteAPI.PartyMember member) : this(member.ID, member.Name)
         {
-            return member.Index == Index;
+            Update(
+                member.Index,
+
+                (Job) member.MainJob,
+                member.MainJobLvl,
+
+                (Job) member.SubJob,
+                member.SubJobLvl,
+
+                member.CurrentHP,
+                member.CurrentHPP,
+
+                member.CurrentMP,
+                member.CurrentMPP,
+
+                (Zone) member.Zone
+            );
+        }
+
+        public PartyMember Update(PartyMember member)
+        {
+            Update(
+                member.Index,
+                member.MainJob,
+                member.MainJobLevel,
+                member.SubJob,
+                member.SubJobLevel,
+                member.HP,
+                member.HPPercent,
+                member.MP,
+                member.MPPercent,
+                member.Zone
+            );
+
+            return this;
+        }
+
+        public PartyMember Update(uint index, Job mainJob, uint mainJobLevel, Job subJob, uint subJobLevel, uint hp, uint hpPercent, uint mp, uint mpPercent, Zone zone = Zone.unknown)
+        {
+            Index = index;
+
+            MainJob = mainJob;
+            MainJobLevel = mainJobLevel;
+
+            SubJob = subJob;
+            SubJobLevel = subJobLevel;
+
+            HP = hp;
+            HPPercent = hpPercent;
+
+            MP = mp;
+            MPPercent = mpPercent;
+
+            if (zone != Zone.unknown) Zone = zone;
+
+            return this;
         }
 
         private bool _active = true;
@@ -57,40 +93,6 @@ namespace MagicFruit.Xi
             }
         }
 
-        private uint _index;
-
-        /// <summary>
-        /// Entity's Index in Memory
-        /// </summary>
-        public uint Index { 
-            get => _index;
-            private set
-            {
-                if (_index == value) return;
-                
-                _index = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private uint _memberNumber;
-
-        /// <summary>
-        /// Index of the Party Member in the Alliance
-        /// </summary>
-        public uint MemberNumber { 
-            get => _memberNumber;
-            private set
-            {
-                if (_memberNumber == value) return;
-
-                _memberNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private uint _id;
-
         /// <summary>
         /// Entity ID
         /// </summary>
@@ -106,22 +108,23 @@ namespace MagicFruit.Xi
             }
         }
 
-        private uint _targetIndex;
+        private uint _index;
 
         /// <summary>
-        /// Index of the Party Member's Target
+        /// Entity's Index in Memory
         /// </summary>
-        public uint TargetIndex
-        {
-            get => _targetIndex;
-            private set
+        public uint Index {
+            get => _index;
+            set
             {
-                if (_targetIndex == value) return;
+                if (_index == value) return;
 
-                _targetIndex = value;
+                _index = value;
                 OnPropertyChanged();
             }
         }
+
+        private uint _id;
 
         private string _name;
 
@@ -283,7 +286,7 @@ namespace MagicFruit.Xi
             }
         }
 
-        private Zone _zone;
+        private Zone _zone = Zone.unknown;
 
         /// <summary>
         /// Zone the Player is in

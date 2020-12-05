@@ -12,11 +12,10 @@ namespace Playing
     {
         static void Main(string[] args)
         {
-            var listener = new UdpClient(19766);
-            var endPoint = new IPEndPoint(IPAddress.Any, 19766);
-
-            try
+            using (var listener = new UdpClient(19766))
             {
+                var endPoint = new IPEndPoint(IPAddress.Any, 19766);
+
                 while (true)
                 {
                     var packet = listener.Receive(ref endPoint);
@@ -52,11 +51,6 @@ namespace Playing
                         }
                     }
                 }
-            }
-            finally
-            {
-                listener.Close();
-                Thread.Sleep(TimeSpan.FromSeconds(0.3));
             }
         }
 
